@@ -7,6 +7,7 @@ function AdminEditar() {
   const [tipo, setTipo] = useState('');
   const [talla, setTalla] = useState('');
   const [color, setColor] = useState('');
+  const [colores, setColores] = useState([]);
   const [precio, setPrecio] = useState('');
   const [clima, setClima] = useState('');
   const [stock, setStock] = useState('');
@@ -20,7 +21,24 @@ function AdminEditar() {
   const edadOptions = ['Niño', 'Joven', 'Adulto'];
 
   useEffect(() => {
-    // Si ya tienes un id, puedes hacer una solicitud para obtener la prenda por id y llenar los campos
+    const fetchColores = async () => {
+      try {
+        const response = await fetch('https://proyecto-react-back-production.up.railway.app/color/get'); // Endpoint del backend
+        if (!response.ok) {
+          throw new Error('Error al obtener los colores');
+        }
+        const data = await response.json();
+        setColores(data); // Actualizar el estado con los colores obtenidos
+      } catch (error) {
+        console.error('Error al obtener colores:', error);
+      }
+    };
+
+    fetchColores();
+  }, []);
+
+
+  useEffect(() => {
     const fetchPrenda = async () => {
       try {
         console.log(id)
@@ -115,12 +133,17 @@ function AdminEditar() {
         ))}
       </select>
 
-      <input
-        type="text"
-        placeholder="Color"
+      <select
         value={color}
         onChange={(e) => setColor(e.target.value)}
-      />
+      >
+        <option value="">Seleccione un color</option>
+        {colores.map((c) => (
+          <option key={c._id} value={c.color}>
+            {c.color}
+          </option>
+        ))}
+      </select>
       <select 
         value={edad}
         onChange={(e) => setEdad(e.target.value)}

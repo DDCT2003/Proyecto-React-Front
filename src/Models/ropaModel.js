@@ -21,3 +21,16 @@
       const data = await response.json(); // Convertir respuesta a JSON
      return data;
     }
+
+     
+ export const CreateColor = async (color) => {
+    
+  const response = await fetch('https://proyecto-react-back-production.up.railway.app/color', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({color}),
+  });
+  return response.ok ? await response.json() : null;
+};
