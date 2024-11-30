@@ -73,7 +73,7 @@ function AdminEditar() {
     const updatedData = { nombre, tipo, talla, color, precio, clima, stock, edad, formalidad };
     
     try {
-      const response = await fetch(`http://localhost:3000/ropa/${id}`, {
+      const response = await fetch(`https://proyecto-react-back-production.up.railway.app/ropa/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
