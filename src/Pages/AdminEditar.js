@@ -25,7 +25,7 @@ function AdminEditar() {
       try {
         console.log(id)
 
-        const response = await fetch(`http://localhost:3000/ropa/getOne/${id}`,{
+        const response = await fetch(`https://proyecto-react-back-production.up.railway.app/ropa/getOne/${id}`,{
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

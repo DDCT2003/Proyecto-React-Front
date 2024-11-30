@@ -2,7 +2,7 @@
  
  export const CreateRopa = async (nombre, tipo,talla,color,precio,clima,stock,edad, formalidad,) => {
     
-        const response = await fetch('http://localhost:3000/ropa', {
+        const response = await fetch('https://proyecto-react-back-production.up.railway.app/ropa', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -14,7 +14,7 @@
 
   export const getRopa = async () => {
  
-      const response = await fetch('http://localhost:3000/ropa/get'); // Endpoint del backend
+      const response = await fetch('https://proyecto-react-back-production.up.railway.app/ropa/get'); // Endpoint del backend
       if (!response.ok) {
         throw new Error('Error al obtener los datos'); // Manejo de errores HTTP
       }

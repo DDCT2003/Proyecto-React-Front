@@ -19,7 +19,7 @@ function WFATienda() {
       setError(null); // Limpia errores previos
       try {
         const response = await fetch(
-          `http://localhost:3000/weather/clotheswfa?edad=${edad}&formalidad=${formalidad}`
+          `https://proyecto-react-back-production.up.railway.app/weather/clotheswfa?edad=${edad}&formalidad=${formalidad}`
         );
         if (!response.ok) {
           throw new Error('Error al obtener las prendas'); // Manejo de errores HTTP
