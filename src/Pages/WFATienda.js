@@ -36,10 +36,34 @@ function WFATienda() {
     fetchPrendasWfa(); // Llama a la función cuando el componente se monte
   }, [auth.formalidad, auth.edad]); // Volverá a ejecutar si formalidad o edad cambian
 
+  useEffect(() => {
+    
+  
+    const guardarRecomendaciones = async () => {
+      try {
+        await fetch('https://proyecto-react-back-production.up.railway.app/recomendaciones/guardar-recomendaciones', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ recomendaciones: prendas }),
+        });
+        console.log('Recomendaciones guardadas exitosamente');
+      } catch (err) {
+        console.error('Error al guardar las recomendaciones:', err);
+      }
+    };
+  
+    if (prendas.length > 0 ) {
+      guardarRecomendaciones();
+    }
+  
+
+  }, [prendas]);
+
   // Renderización
   if (loading) return <p>Cargando prendas...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  
 
   return (
 <div className='divtable'>
